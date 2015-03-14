@@ -4,7 +4,7 @@ var fs = require('fs');
 
 var SocketCollection = require('./lib/SocketCollection');
 
-app.listen(15123);
+app.listen(process.env.PORT || 15123);
 
 function handler (req, res) {
    fs.readFile(__dirname + '/index.html',
