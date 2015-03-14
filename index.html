@@ -8,17 +8,32 @@
 
       socket.on('connect', function () {
          socket.emit('register', { type: 'client' });
+      });
 
-         setInterval(function () {
+      $(function () {
+         $('#form').on('submit', function (event) {
+            event.preventDefault();
 
-            socket.emit('message', 'a');
-         }, 3000);
+            var message = $('input[name=message]').val();
+            socket.emit('message', message);
+
+            $('#messages').append($('<div>Sent [' + message + '] on [' + (new Date().toLocaleString()) + ']</div>'));
+         });
       });
    </script>
 </head>
 <body>
+   <div>
+      <form id="form">
+         <label for="message">Message</label>
+         <input name="message" id="message" type="text"/>
+
+         <button type="submit">Send</button>
+      </form>
+   </div>
+
    <div id="messages">
-      <!-- Intentionally left blank -->
+
    </div>
 </body>
 </html>
