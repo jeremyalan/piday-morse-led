@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+   <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+   <script src="socket.io/socket.io.js"></script>
+   <script type="text/javascript">
+      var socket = io.connect('http://localhost:15123');
+
+      socket.on('connect', function () {
+         socket.emit('register', { type: 'client' });
+
+         setInterval(function () {
+
+            socket.emit('message', 'a');
+         }, 3000);
+      });
+   </script>
+</head>
+<body>
+   <div id="messages">
+      <!-- Intentionally left blank -->
+   </div>
+</body>
+</html>
